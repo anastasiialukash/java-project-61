@@ -12,7 +12,7 @@ public class ExpressionModel {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.firstOperand + " " + this.operation + " " + this.secondOperand;
     }
 }

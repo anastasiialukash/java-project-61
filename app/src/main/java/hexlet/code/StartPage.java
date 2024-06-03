@@ -1,9 +1,8 @@
 package hexlet.code;
 
-import java.util.Scanner;
+import hexlet.code.games.GameEngine;
 
-import static hexlet.code.games.EvenGame.isEven;
-import static hexlet.code.games.Calculator.calc;
+import java.util.Scanner;
 
 public class StartPage {
     static Scanner scanner = new Scanner(System.in);
@@ -25,18 +24,10 @@ public class StartPage {
                 """);
         String game = scanner.next();
         System.out.println("Your choice: " + game);
-        String name = greet();
+        String playerName = greet();
 
-        selectGame(game, name);
+        GameEngine.runGame(game, playerName);
 
         scanner.close();
-    }
-
-    public static void selectGame(String gameNumber, String playerName) {
-        if (gameNumber.equals("2")) {
-            isEven(playerName);
-        } if (gameNumber.equals("3")) {
-            calc(playerName);
-        }
     }
 }
