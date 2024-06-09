@@ -35,9 +35,17 @@ public class Progression {
 
         for (int i = 0; i < sequence.length; i++) {
             if (i == index) {
-                result.append(" .. ");
+                if(index == 0) {
+                    result.append("..");
+                } else {
+                    result.append(" ..");
+                }
             } else {
-                result.append(" ").append(sequence[i]).append(" ");
+                if(i == 0) {
+                    result.append(sequence[i]);
+                } else {
+                    result.append(" ").append(sequence[i]);
+                }
             }
         }
 
