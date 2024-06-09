@@ -30,7 +30,8 @@ public class Cli {
                 1 - Greet
                 2 - Even
                 3 - Calc
-                4 - Exit
+                4 - GCD
+                0 - Exit
                 """);
         String game = scanner.next();
         System.out.println("Your choice: " + game);

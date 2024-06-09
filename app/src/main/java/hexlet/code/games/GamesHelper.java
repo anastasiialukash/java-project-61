@@ -3,6 +3,9 @@ package hexlet.code.games;
 import java.util.Random;
 
 public class GamesHelper {
+
+    private GamesHelper() {}
+
     static int gameRound = 0;
     static Random random = new Random();
 

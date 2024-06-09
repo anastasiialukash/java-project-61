@@ -4,11 +4,9 @@ import hexlet.code.games.GameEngine;
 
 public class StartPage {
 
-    GameEngine gameEngine = new GameEngine();
+    private final GameEngine gameEngine = new GameEngine();
 
-    public StartPage() { }
-
-    public Cli cli = new Cli();
+    private final Cli cli = new Cli();
 
     public void selectGame() {
         String playerName = cli.greet();

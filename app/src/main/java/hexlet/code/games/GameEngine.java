@@ -6,6 +6,7 @@ public class GameEngine {
 
     EvenGame evenGame = new EvenGame();
     Calculator calculator = new Calculator();
+    GCD calculatorGCD = new GCD();
 
     public GameEngine() { }
 
@@ -36,17 +37,18 @@ public class GameEngine {
         return switch (gameNumber) {
             case "2" -> "Answer 'yes' if the number is even, otherwise answer 'no'.";
             case "3" -> "What is the result of the expression?";
+            case "4" -> "Find the greatest common divisor of given numbers.";
             default -> null;
         };
     }
 
     private GameModel getGameModel(String gameNumber) {
-        if (gameNumber.equals("2")) {
-            return evenGame.isEven();
-        } else if (gameNumber.equals("3")) {
-            return calculator.calc();
-        }
-        return null;
+        return switch (gameNumber) {
+            case "2" -> evenGame.isEven();
+            case "3" -> calculator.calc();
+            case "4" -> calculatorGCD.calculateGCD();
+            default -> null;
+        };
     }
 
     private void showGameIntro(String gameIntro) {
