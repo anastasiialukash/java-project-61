@@ -7,6 +7,8 @@ import hexlet.code.games.GCD;
 import hexlet.code.games.Progression;
 import hexlet.code.models.GameModel;
 
+import java.util.Objects;
+
 public class GameEngine {
 
     private int gameRound = 0;
@@ -15,30 +17,34 @@ public class GameEngine {
     GCD calculatorGCD = new GCD();
     Progression progression = new Progression();
     Prime prime = new Prime();
+    Cli cli = new Cli();
 
     public void runGame(String gameNumber, String playerName) {
-        String gameIntro = getGameIntro(gameNumber);
+        if(Objects.equals(gameNumber, "1") || Objects.equals(gameNumber, "0")) {
+            cli.exit();
+        } else {
+            String gameIntro = getGameIntro(gameNumber);
 
-        showGameIntro(gameIntro);
+            showGameIntro(gameIntro);
 
-        int rightAnswerCount = 0;
+            int rightAnswerCount = 0;
 
-        while (gameRound < 3) {
-            GameModel gameModel = getGameModel(gameNumber);
-            assert gameModel != null;
-            boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
-            gameRound += 1;
-            if (isValid) {
-                rightAnswerCount += 1;
+            while (gameRound < 3) {
+                GameModel gameModel = getGameModel(gameNumber);
+                assert gameModel != null;
+                boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
+                gameRound += 1;
+                if (isValid) {
+                    rightAnswerCount += 1;
+                }
             }
+
+            if (rightAnswerCount == 3) {
+                System.out.println("Congratulations, " + playerName + "!");
+            }
+
+            gameRound = 0;
         }
-
-        if (rightAnswerCount == 3) {
-            System.out.println("Congratulations, " + playerName + "!");
-        }
-
-        gameRound = 0;
-
     }
 
     private String getGameIntro(String gameNumber) {

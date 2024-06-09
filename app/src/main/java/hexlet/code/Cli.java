@@ -6,8 +6,6 @@ public class Cli {
 
     Scanner scanner = new Scanner(System.in);
 
-    public Cli() { }
-
     public String handleGameInputAndReturnAnswer(String question) {
         System.out.println("Question: " + question);
         var answer = scanner.next();
@@ -38,5 +36,9 @@ public class Cli {
         String game = scanner.next();
         System.out.println("Your choice: " + game);
         return game;
+    }
+
+    public void exit() {
+        scanner.close();
     }
 }
