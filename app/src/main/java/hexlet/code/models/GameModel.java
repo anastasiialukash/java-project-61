@@ -5,10 +5,10 @@ public final class GameModel {
     private final String gameAnswer;
     private final String playerAnswer;
 
-    public GameModel(String gameQuestion, String gameAnswer, String playerAnswer) {
-        this.gameQuestion = gameQuestion;
-        this.gameAnswer = gameAnswer;
-        this.playerAnswer = playerAnswer;
+    public GameModel(String question, String answer, String inputAnswer) {
+        this.gameQuestion = question;
+        this.gameAnswer = answer;
+        this.playerAnswer = inputAnswer;
     }
 
     public String getGameQuestion() {

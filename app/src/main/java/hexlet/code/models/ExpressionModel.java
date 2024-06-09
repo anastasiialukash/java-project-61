@@ -5,10 +5,10 @@ public final class ExpressionModel {
     private final int secondOperand;
     private final String operation;
 
-    public ExpressionModel(int firstOperand, int secondOperand, String operation) {
-        this.firstOperand = firstOperand;
-        this.secondOperand = secondOperand;
-        this.operation = operation;
+    public ExpressionModel(int operandOne, int operandTwo, String operationSign) {
+        this.firstOperand = operandOne;
+        this.secondOperand = operandTwo;
+        this.operation = operationSign;
     }
 
     @Override
