@@ -1,10 +1,9 @@
-package hexlet.code.games;
+package hexlet.code;
 
 import java.util.Random;
 
 public final class GamesHelper {
 
-    static int gameRound = 0;
     static Random random = new Random();
 
     public static int getRandomNumber() {

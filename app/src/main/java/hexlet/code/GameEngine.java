@@ -1,13 +1,20 @@
-package hexlet.code.games;
+package hexlet.code;
 
+import hexlet.code.games.Prime;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.Calculator;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Progression;
 import hexlet.code.models.GameModel;
 
 public class GameEngine {
 
+    private int gameRound = 0;
     EvenGame evenGame = new EvenGame();
     Calculator calculator = new Calculator();
     GCD calculatorGCD = new GCD();
-    ArithmeticProgression arithmeticProgression = new ArithmeticProgression();
+    Progression progression = new Progression();
+    Prime prime = new Prime();
 
     public void runGame(String gameNumber, String playerName) {
         String gameIntro = getGameIntro(gameNumber);
@@ -15,11 +22,11 @@ public class GameEngine {
 
         int rightAnswerCount = 0;
 
-        while (GamesHelper.gameRound < 3) {
+        while (gameRound < 3) {
             GameModel gameModel = getGameModel(gameNumber);
             assert gameModel != null;
             boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
-            GamesHelper.gameRound += 1;
+            gameRound += 1;
             if (isValid) {
                 rightAnswerCount += 1;
             }
@@ -29,7 +36,7 @@ public class GameEngine {
             System.out.println("Congratulations, " + playerName + "!");
         }
 
-        GamesHelper.gameRound = 0;
+        gameRound = 0;
     }
 
     private String getGameIntro(String gameNumber) {
@@ -38,6 +45,7 @@ public class GameEngine {
             case "3" -> "What is the result of the expression?";
             case "4" -> "Find the greatest common divisor of given numbers.";
             case "5" -> "What number is missing in the progression?";
+            case "6" -> "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
             default -> null;
         };
     }
@@ -47,7 +55,8 @@ public class GameEngine {
             case "2" -> evenGame.isEven();
             case "3" -> calculator.calc();
             case "4" -> calculatorGCD.calculateGCD();
-            case "5" -> arithmeticProgression.getArithmeticProgression();
+            case "5" -> progression.getArithmeticProgression();
+            case "6" -> prime.isPrime();
             default -> null;
         };
     }
@@ -63,7 +72,7 @@ public class GameEngine {
         } else {
             System.out.printf("'%s' is the wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!\n",
                     gamerAnswer, correctAnswer, name);
-            GamesHelper.gameRound = 3;
+            gameRound = 3;
             return false;
         }
     }

@@ -1,7 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.games.GameEngine;
-
 public class StartPage {
 
     private final GameEngine gameEngine = new GameEngine();

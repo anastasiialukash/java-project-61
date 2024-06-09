@@ -1,9 +1,10 @@
 package hexlet.code.games;
 
 import hexlet.code.Cli;
+import hexlet.code.GamesHelper;
 import hexlet.code.models.GameModel;
 
-public class ArithmeticProgression {
+public class Progression {
     Cli cli = new Cli();
 
     public GameModel getArithmeticProgression() {
