@@ -3,7 +3,13 @@ package hexlet.code.games;
 import hexlet.code.models.GameModel;
 
 public class GameEngine {
-    public static void runGame(String gameNumber, String playerName) {
+
+    EvenGame evenGame = new EvenGame();
+    Calculator calculator = new Calculator();
+
+    public GameEngine() { }
+
+    public void runGame(String gameNumber, String playerName) {
         String gameIntro = getGameIntro(gameNumber);
         showGameIntro(gameIntro);
 
@@ -26,7 +32,7 @@ public class GameEngine {
         GamesHelper.gameRound = 0;
     }
 
-    private static String getGameIntro(String gameNumber) {
+    private String getGameIntro(String gameNumber) {
         return switch (gameNumber) {
             case "2" -> "Answer 'yes' if the number is even, otherwise answer 'no'.";
             case "3" -> "What is the result of the expression?";
@@ -34,20 +40,20 @@ public class GameEngine {
         };
     }
 
-    private static GameModel getGameModel(String gameNumber) {
+    private GameModel getGameModel(String gameNumber) {
         if (gameNumber.equals("2")) {
-            return EvenGame.isEven();
+            return evenGame.isEven();
         } else if (gameNumber.equals("3")) {
-            return Calculator.calc();
+            return calculator.calc();
         }
         return null;
     }
 
-    private static void showGameIntro(String gameIntro) {
+    private void showGameIntro(String gameIntro) {
         System.out.println(gameIntro);
     }
 
-    private static boolean isValidResult(String gamerAnswer, String correctAnswer, String name) {
+    private boolean isValidResult(String gamerAnswer, String correctAnswer, String name) {
         if (gamerAnswer.equalsIgnoreCase(correctAnswer)) {
             System.out.println("Correct!");
             return true;

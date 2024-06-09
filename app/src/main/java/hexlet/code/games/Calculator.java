@@ -1,5 +1,6 @@
 package hexlet.code.games;
 
+import hexlet.code.Cli;
 import hexlet.code.models.ExpressionModel;
 import hexlet.code.models.GameModel;
 
@@ -8,15 +9,18 @@ import java.util.Map;
 
 public class Calculator {
 
-    public static GameModel calc() {
+    public Calculator() { }
+    Cli cli = new Cli();
+
+    public GameModel calc() {
         ExpressionModel expression = prepareExpression();
         String correctAnswer = calcResult(expression.firstOperand, expression.secondOperand, expression.operation);
-        String answer = GamesHelper.handleGameInputAndReturnAnswer(expression.toString());
+        String answer = cli.handleGameInputAndReturnAnswer(expression.toString());
 
         return new GameModel(expression.toString(), correctAnswer, answer);
     }
 
-    private static String calcResult(int firstOperand, int secondOperand, String operation) {
+    private String calcResult(int firstOperand, int secondOperand, String operation) {
         return switch (operation) {
             case "-" -> String.valueOf(firstOperand - secondOperand);
             case "+" -> String.valueOf(firstOperand + secondOperand);
@@ -25,7 +29,7 @@ public class Calculator {
         };
     }
 
-    private static ExpressionModel prepareExpression() {
+    private ExpressionModel prepareExpression() {
         int firstNumber = GamesHelper.getRandomNumber();
         int secondNumber = GamesHelper.getRandomNumber();
 
@@ -37,7 +41,7 @@ public class Calculator {
         return new ExpressionModel(firstOperandInt, secondOperandInt, operation);
     }
 
-    private static String getRandomOperation(int key) {
+    private String getRandomOperation(int key) {
         Map<Integer, String> operations = new HashMap<>();
         operations.put(1, "+");
         operations.put(2, "-");

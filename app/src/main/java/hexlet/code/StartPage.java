@@ -2,32 +2,18 @@ package hexlet.code;
 
 import hexlet.code.games.GameEngine;
 
-import java.util.Scanner;
-
 public class StartPage {
-    static Scanner scanner = new Scanner(System.in);
 
-    public static String greet() {
-        System.out.print("May I have your name: ");
-        String name = scanner.next();
-        System.out.println("Hello, " + name + "!");
-        return name;
-    }
+    GameEngine gameEngine = new GameEngine();
 
-    public static void selectGame() {
-        System.out.print("""
-                Please enter the game number and press Enter.
-                1 - Greet
-                2 - Even
-                3 - Calc
-                4 - Exit
-                """);
-        String game = scanner.next();
-        System.out.println("Your choice: " + game);
-        String playerName = greet();
+    public StartPage() { }
 
-        GameEngine.runGame(game, playerName);
+    public Cli cli = new Cli();
 
-        scanner.close();
+    public void selectGame() {
+        String playerName = cli.greet();
+        String game = cli.selectGame();
+
+        gameEngine.runGame(game, playerName);
     }
 }
