@@ -6,9 +6,10 @@ import hexlet.code.models.GameModel;
 
 public final class Prime {
     private static final int SMALL_PRIME_LIMIT = 3;
+    private static final int FIRST_ODD_PRIME = 5;
     private static final int DIVISOR_STEP = 6;
 
-    private Cli cli = new Cli();
+    private final Cli cli = new Cli();
 
     public GameModel isPrime() {
         int number = GamesHelper.getRandomNumber();
@@ -29,7 +30,7 @@ public final class Prime {
             return false;
         }
 
-        int i = 5;
+        int i = FIRST_ODD_PRIME;
         while (i * i <= number) {
             if (number % i == 0 || number % (i + 2) == 0) {
                 return false;

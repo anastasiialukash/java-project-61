@@ -1,9 +1,9 @@
 package hexlet.code.models;
 
 public final class GameModel {
-    private String gameQuestion;
-    private String gameAnswer;
-    private String playerAnswer;
+    private final String gameQuestion;
+    private final String gameAnswer;
+    private final String playerAnswer;
 
     public GameModel(String gameQuestion, String gameAnswer, String playerAnswer) {
         this.gameQuestion = gameQuestion;

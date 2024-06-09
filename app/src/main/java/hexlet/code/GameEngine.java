@@ -12,7 +12,8 @@ import java.util.Objects;
 public final class GameEngine {
 
     private int gameRound = 0;
-    private final int MAX_ROUNDS = 3;
+    private final int maxRounds = 3;
+    private final int maxRightAnswers = 3;
     private final EvenGame evenGame = new EvenGame();
     private final Calculator calculator = new Calculator();
     private final GCD calculatorGCD = new GCD();
@@ -30,8 +31,7 @@ public final class GameEngine {
 
             int rightAnswerCount = 0;
 
-            int MAX_RIGHT_ANSWERS = 3;
-            while (gameRound < MAX_RIGHT_ANSWERS) {
+            while (gameRound < maxRightAnswers) {
                 GameModel gameModel = getGameModel(gameNumber);
                 assert gameModel != null;
                 boolean isValid = isValidResult(gameModel.getPlayerAnswer(), gameModel.getGameAnswer(), playerName);
@@ -41,7 +41,7 @@ public final class GameEngine {
                 }
             }
 
-            if (rightAnswerCount == MAX_RIGHT_ANSWERS) {
+            if (rightAnswerCount == maxRightAnswers) {
                 System.out.println("Congratulations, " + playerName + "!");
             }
 
@@ -82,7 +82,7 @@ public final class GameEngine {
         } else {
             System.out.printf("'%s' is the wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!\n",
                     gamerAnswer, correctAnswer, name);
-            gameRound = MAX_ROUNDS;
+            gameRound = maxRounds;
             return false;
         }
     }

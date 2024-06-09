@@ -4,10 +4,10 @@ import hexlet.code.Cli;
 import hexlet.code.GamesHelper;
 import hexlet.code.models.GameModel;
 
-public class GCD {
+public final class GCD {
     public GCD() { }
 
-    private Cli cli = new Cli();
+    private final Cli cli = new Cli();
 
     public GameModel calculateGCD() {
         int firstNumber = GamesHelper.getRandomNumber();

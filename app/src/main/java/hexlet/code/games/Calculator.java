@@ -9,16 +9,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class Calculator {
-    private final static int RANGE_LIMIT = 4;
-    private final static int PLUS_ID = 1;
-    private final static int MINUS_ID = 2;
-    private final static int MULTIPLY_ID = 3;
+    private static final int RANGE_LIMIT = 4;
+    private static final int PLUS_ID = 1;
+    private static final int MINUS_ID = 2;
+    private static final int MULTIPLY_ID = 3;
 
-    private Cli cli = new Cli();
+    private final Cli cli = new Cli();
 
     public GameModel calc() {
         ExpressionModel expression = prepareExpression();
-        String correctAnswer = calcResult(expression.getFirstOperand(), expression.getSecondOperand(), expression.getOperation());
+        String correctAnswer = calcResult(expression.getFirstOperand(), expression.getSecondOperand(),
+                expression.getOperation());
         String answer = cli.handleGameInputAndReturnAnswer(expression.toString());
 
         return new GameModel(expression.toString(), correctAnswer, answer);

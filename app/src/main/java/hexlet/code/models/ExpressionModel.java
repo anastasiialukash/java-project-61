@@ -1,9 +1,9 @@
 package hexlet.code.models;
 
 public final class ExpressionModel {
-    private int firstOperand;
-    private int secondOperand;
-    private String operation;
+    private final int firstOperand;
+    private final int secondOperand;
+    private final String operation;
 
     public ExpressionModel(int firstOperand, int secondOperand, String operation) {
         this.firstOperand = firstOperand;
