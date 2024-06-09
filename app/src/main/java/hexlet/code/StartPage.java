@@ -7,8 +7,8 @@ public class StartPage {
     private final Cli cli = new Cli();
 
     public void selectGame() {
-        String playerName = cli.greet();
         String game = cli.selectGame();
+        String playerName = cli.greet();
 
         gameEngine.runGame(game, playerName);
     }
