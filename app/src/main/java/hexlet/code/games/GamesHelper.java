@@ -2,9 +2,7 @@ package hexlet.code.games;
 
 import java.util.Random;
 
-public class GamesHelper {
-
-    private GamesHelper() {}
+public final class GamesHelper {
 
     static int gameRound = 0;
     static Random random = new Random();
