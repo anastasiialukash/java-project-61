@@ -7,7 +7,7 @@ import hexlet.code.models.GameModel;
 public class GCD {
     public GCD() { }
 
-    Cli cli = new Cli();
+    private Cli cli = new Cli();
 
     public GameModel calculateGCD() {
         int firstNumber = GamesHelper.getRandomNumber();

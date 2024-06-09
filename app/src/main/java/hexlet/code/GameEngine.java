@@ -9,18 +9,19 @@ import hexlet.code.models.GameModel;
 
 import java.util.Objects;
 
-public class GameEngine {
+public final class GameEngine {
 
     private int gameRound = 0;
-    EvenGame evenGame = new EvenGame();
-    Calculator calculator = new Calculator();
-    GCD calculatorGCD = new GCD();
-    Progression progression = new Progression();
-    Prime prime = new Prime();
-    Cli cli = new Cli();
+    private final int MAX_ROUNDS = 3;
+    private final EvenGame evenGame = new EvenGame();
+    private final Calculator calculator = new Calculator();
+    private final GCD calculatorGCD = new GCD();
+    private final Progression progression = new Progression();
+    private final Prime prime = new Prime();
+    private final Cli cli = new Cli();
 
     public void runGame(String gameNumber, String playerName) {
-        if(Objects.equals(gameNumber, "1") || Objects.equals(gameNumber, "0")) {
+        if (Objects.equals(gameNumber, "1") || Objects.equals(gameNumber, "0")) {
             cli.exit();
         } else {
             String gameIntro = getGameIntro(gameNumber);
@@ -29,17 +30,18 @@ public class GameEngine {
 
             int rightAnswerCount = 0;
 
-            while (gameRound < 3) {
+            int MAX_RIGHT_ANSWERS = 3;
+            while (gameRound < MAX_RIGHT_ANSWERS) {
                 GameModel gameModel = getGameModel(gameNumber);
                 assert gameModel != null;
-                boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
+                boolean isValid = isValidResult(gameModel.getPlayerAnswer(), gameModel.getGameAnswer(), playerName);
                 gameRound += 1;
                 if (isValid) {
                     rightAnswerCount += 1;
                 }
             }
 
-            if (rightAnswerCount == 3) {
+            if (rightAnswerCount == MAX_RIGHT_ANSWERS) {
                 System.out.println("Congratulations, " + playerName + "!");
             }
 
@@ -80,7 +82,7 @@ public class GameEngine {
         } else {
             System.out.printf("'%s' is the wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!\n",
                     gamerAnswer, correctAnswer, name);
-            gameRound = 3;
+            gameRound = MAX_ROUNDS;
             return false;
         }
     }

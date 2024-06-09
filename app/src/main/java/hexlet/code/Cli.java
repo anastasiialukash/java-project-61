@@ -2,9 +2,9 @@ package hexlet.code;
 
 import java.util.Scanner;
 
-public class Cli {
+public final class Cli {
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public String handleGameInputAndReturnAnswer(String question) {
         System.out.println("Question: " + question);

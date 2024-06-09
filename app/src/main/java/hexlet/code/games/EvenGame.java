@@ -4,11 +4,8 @@ import hexlet.code.Cli;
 import hexlet.code.GamesHelper;
 import hexlet.code.models.GameModel;
 
-public class EvenGame {
-
-    public EvenGame() { }
-
-    Cli cli = new Cli();
+public final class EvenGame {
+    private Cli cli = new Cli();
 
     public GameModel isEven() {
         int number = GamesHelper.getRandomNumber();

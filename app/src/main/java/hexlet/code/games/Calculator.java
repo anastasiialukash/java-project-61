@@ -8,14 +8,17 @@ import hexlet.code.models.GameModel;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Calculator {
+public final class Calculator {
+    private final static int RANGE_LIMIT = 4;
+    private final static int PLUS_ID = 1;
+    private final static int MINUS_ID = 2;
+    private final static int MULTIPLY_ID = 3;
 
-    public Calculator() { }
-    Cli cli = new Cli();
+    private Cli cli = new Cli();
 
     public GameModel calc() {
         ExpressionModel expression = prepareExpression();
-        String correctAnswer = calcResult(expression.firstOperand, expression.secondOperand, expression.operation);
+        String correctAnswer = calcResult(expression.getFirstOperand(), expression.getSecondOperand(), expression.getOperation());
         String answer = cli.handleGameInputAndReturnAnswer(expression.toString());
 
         return new GameModel(expression.toString(), correctAnswer, answer);
@@ -37,16 +40,16 @@ public class Calculator {
         int firstOperandInt = Math.max(firstNumber, secondNumber);
         int secondOperandInt = Math.min(firstNumber, secondNumber);
 
-        String operation = getRandomOperation(GamesHelper.getRandomNumberWithinRange(1, 4));
+        String operation = getRandomOperation(GamesHelper.getRandomNumberWithinRange(1, RANGE_LIMIT));
 
         return new ExpressionModel(firstOperandInt, secondOperandInt, operation);
     }
 
     private String getRandomOperation(int key) {
         Map<Integer, String> operations = new HashMap<>();
-        operations.put(1, "+");
-        operations.put(2, "-");
-        operations.put(3, "*");
+        operations.put(PLUS_ID, "+");
+        operations.put(MINUS_ID, "-");
+        operations.put(MULTIPLY_ID, "*");
 
         return operations.get(key);
     }

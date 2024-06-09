@@ -1,9 +1,9 @@
 package hexlet.code.models;
 
-public class ExpressionModel {
-    public int firstOperand;
-    public int secondOperand;
-    public String operation;
+public final class ExpressionModel {
+    private int firstOperand;
+    private int secondOperand;
+    private String operation;
 
     public ExpressionModel(int firstOperand, int secondOperand, String operation) {
         this.firstOperand = firstOperand;
@@ -14,5 +14,17 @@ public class ExpressionModel {
     @Override
     public String toString() {
         return this.firstOperand + " " + this.operation + " " + this.secondOperand;
+    }
+
+    public int getFirstOperand() {
+        return firstOperand;
+    }
+
+    public int getSecondOperand() {
+        return secondOperand;
+    }
+
+    public String getOperation() {
+        return operation;
     }
 }

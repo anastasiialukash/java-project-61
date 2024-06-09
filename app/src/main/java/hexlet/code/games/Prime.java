@@ -4,11 +4,11 @@ import hexlet.code.Cli;
 import hexlet.code.GamesHelper;
 import hexlet.code.models.GameModel;
 
-public class Prime {
+public final class Prime {
+    private static final int SMALL_PRIME_LIMIT = 3;
+    private static final int DIVISOR_STEP = 6;
 
-    public Prime() { }
-
-    Cli cli = new Cli();
+    private Cli cli = new Cli();
 
     public GameModel isPrime() {
         int number = GamesHelper.getRandomNumber();
@@ -22,10 +22,10 @@ public class Prime {
         if (number <= 1) {
             return false;
         }
-        if (number <= 3) {
+        if (number <= SMALL_PRIME_LIMIT) {
             return true;
         }
-        if (number % 2 == 0 || number % 3 == 0) {
+        if (number % 2 == 0 || number % SMALL_PRIME_LIMIT == 0) {
             return false;
         }
 
@@ -34,7 +34,7 @@ public class Prime {
             if (number % i == 0 || number % (i + 2) == 0) {
                 return false;
             }
-            i += 6;
+            i += DIVISOR_STEP;
         }
 
         return true;

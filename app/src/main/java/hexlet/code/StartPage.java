@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class StartPage {
+public final class StartPage {
 
     private final GameEngine gameEngine = new GameEngine();
 
