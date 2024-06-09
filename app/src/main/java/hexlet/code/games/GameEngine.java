@@ -7,8 +7,7 @@ public class GameEngine {
     EvenGame evenGame = new EvenGame();
     Calculator calculator = new Calculator();
     GCD calculatorGCD = new GCD();
-
-    public GameEngine() { }
+    ArithmeticProgression arithmeticProgression = new ArithmeticProgression();
 
     public void runGame(String gameNumber, String playerName) {
         String gameIntro = getGameIntro(gameNumber);
@@ -38,6 +37,7 @@ public class GameEngine {
             case "2" -> "Answer 'yes' if the number is even, otherwise answer 'no'.";
             case "3" -> "What is the result of the expression?";
             case "4" -> "Find the greatest common divisor of given numbers.";
+            case "5" -> "What number is missing in the progression?";
             default -> null;
         };
     }
@@ -47,6 +47,7 @@ public class GameEngine {
             case "2" -> evenGame.isEven();
             case "3" -> calculator.calc();
             case "4" -> calculatorGCD.calculateGCD();
+            case "5" -> arithmeticProgression.getArithmeticProgression();
             default -> null;
         };
     }
