@@ -18,25 +18,30 @@ public class GameEngine {
 
     public void runGame(String gameNumber, String playerName) {
         String gameIntro = getGameIntro(gameNumber);
-        showGameIntro(gameIntro);
 
-        int rightAnswerCount = 0;
+        if (gameIntro == null) {
+            System.out.println("Sorry, there is no such game. Please try again.");
+        } else {
+            showGameIntro(gameIntro);
 
-        while (gameRound < 3) {
-            GameModel gameModel = getGameModel(gameNumber);
-            assert gameModel != null;
-            boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
-            gameRound += 1;
-            if (isValid) {
-                rightAnswerCount += 1;
+            int rightAnswerCount = 0;
+
+            while (gameRound < 3) {
+                GameModel gameModel = getGameModel(gameNumber);
+                assert gameModel != null;
+                boolean isValid = isValidResult(gameModel.playerAnswer, gameModel.gameAnswer, playerName);
+                gameRound += 1;
+                if (isValid) {
+                    rightAnswerCount += 1;
+                }
             }
-        }
 
-        if (rightAnswerCount == 3) {
-            System.out.println("Congratulations, " + playerName + "!");
-        }
+            if (rightAnswerCount == 3) {
+                System.out.println("Congratulations, " + playerName + "!");
+            }
 
-        gameRound = 0;
+            gameRound = 0;
+        }
     }
 
     private String getGameIntro(String gameNumber) {
