@@ -17,8 +17,8 @@ public class App {
     private static final Prime PRIME = new Prime();
 
     public static void main(String[] args) {
-        String gamerName = greet();
         String gameNumber = selectGame();
+        String gamerName = greet();
         starGame(gameNumber, gamerName);
     }
 
@@ -49,12 +49,17 @@ public class App {
 
     public static void starGame(String gameNumber, String gamerName) {
         switch (gameNumber) {
+            case "1" -> Cli.greet();
             case "2" -> EVEN_GAME.isEven(gamerName);
             case "3" -> CALCULATOR.calc(gamerName);
             case "4" -> CALCULATOR_GCD.calculateGCD(gamerName);
             case "5" -> PROGRESSION.getArithmeticProgression(gamerName);
             case "6" -> PRIME.isPrime(gamerName);
-            default -> Cli.greet();
+            default -> exit();
         }
+    }
+
+    private static void exit() {
+        SCANNER.close();
     }
 }
