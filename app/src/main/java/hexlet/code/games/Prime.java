@@ -1,22 +1,22 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.GameEngine;
 import hexlet.code.GamesHelper;
-import hexlet.code.models.GameModel;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 public final class Prime {
     private static final int SMALL_PRIME_LIMIT = 3;
     private static final int FIRST_ODD_PRIME = 5;
     private static final int DIVISOR_STEP = 6;
 
-    private final Cli cli = new Cli();
-
-    public GameModel isPrime() {
-        int number = GamesHelper.getRandomNumber();
-        String correctAnswer = isPrimeNumber(number) ? "yes" : "no";
-        String answer = cli.handleGameInputAndReturnAnswer(Integer.toString(number));
-
-        return new GameModel(Integer.toString(number), correctAnswer, answer);
+    public void isPrime(String gamerName) {
+        GameEngine gameEngine = new GameEngine();
+        String mainQuestion = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+        Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
+        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
     }
 
     public boolean isPrimeNumber(int number) {
@@ -41,4 +41,20 @@ public final class Prime {
         return true;
     }
 
+    private Map<String, String> getQuestionsAndAnswers() {
+        Map<String, String> questionsAndAnswers = new HashMap<>();
+        int firstNumber = GamesHelper.getRandomNumber();
+        int secondNumber = GamesHelper.getRandomNumber();
+        int thirdNumber = GamesHelper.getRandomNumber();
+
+        String firstAnswer = isPrimeNumber(firstNumber) ? "yes" : "no";
+        String secondAnswer = isPrimeNumber(secondNumber) ? "yes" : "no";
+        String thirdAnswer = isPrimeNumber(thirdNumber) ? "yes" : "no";
+
+        questionsAndAnswers.put(String.valueOf(firstNumber), firstAnswer);
+        questionsAndAnswers.put(String.valueOf(secondNumber), secondAnswer);
+        questionsAndAnswers.put(String.valueOf(thirdNumber), thirdAnswer);
+
+        return questionsAndAnswers;
+    }
 }

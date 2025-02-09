@@ -1,23 +1,21 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.GameEngine;
 import hexlet.code.GamesHelper;
-import hexlet.code.models.GameModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public final class Progression {
     private static final int MIN_PROGRESSION_LENGTH = 5;
     private static final int MAX_PROGRESSION_LENGTH = 11;
     private static final int MAX_NUMBER = 100;
-    private Cli cli = new Cli();
 
-    public GameModel getArithmeticProgression() {
-        int progressionLength = GamesHelper.getRandomNumberWithinRange(MIN_PROGRESSION_LENGTH, MAX_PROGRESSION_LENGTH);
-        int indexOfMissedElement = GamesHelper.getRandomNumberWithinRange(0, progressionLength - 1);
-        int[] sequence = getSequence(progressionLength);
-        String question = prepareQuestion(sequence, indexOfMissedElement);
-        String answer = cli.handleGameInputAndReturnAnswer(question);
-
-        return new GameModel(question, Integer.toString(sequence[indexOfMissedElement]), answer);
+    public void getArithmeticProgression(String gamerName) {
+        GameEngine gameEngine = new GameEngine();
+        String mainQuestion = "What number is missing in the progression?";
+        Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
+        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
     }
 
     private int[] getSequence(int progressionLength) {
@@ -53,5 +51,29 @@ public final class Progression {
         }
 
         return result.toString();
+    }
+
+    private String[] getQuestionAndAnswer() {
+        int progressionLength = GamesHelper.getRandomNumberWithinRange(MIN_PROGRESSION_LENGTH, MAX_PROGRESSION_LENGTH);
+        int indexOfMissedElement = GamesHelper.getRandomNumberWithinRange(0, progressionLength - 1);
+        int[] questionSequence = getSequence(progressionLength);
+        String question = prepareQuestion(questionSequence, indexOfMissedElement);
+        String answer = String.valueOf(questionSequence[indexOfMissedElement]);
+
+        return new String[]{question, answer};
+    }
+
+
+    private Map<String, String> getQuestionsAndAnswers() {
+        Map<String, String> questionsAndAnswers = new HashMap<>();
+        String[] firstPair = getQuestionAndAnswer();
+        String[] secondPair = getQuestionAndAnswer();
+        String[] thirdPair = getQuestionAndAnswer();
+
+        questionsAndAnswers.put(firstPair[0], firstPair[1]);
+        questionsAndAnswers.put(secondPair[0], secondPair[1]);
+        questionsAndAnswers.put(thirdPair[0], thirdPair[1]);
+
+        return questionsAndAnswers;
     }
 }

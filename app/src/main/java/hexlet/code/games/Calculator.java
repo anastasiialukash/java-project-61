@@ -1,9 +1,8 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
+import hexlet.code.GameEngine;
 import hexlet.code.GamesHelper;
 import hexlet.code.models.ExpressionModel;
-import hexlet.code.models.GameModel;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,15 +13,11 @@ public final class Calculator {
     private static final int MINUS_ID = 2;
     private static final int MULTIPLY_ID = 3;
 
-    private final Cli cli = new Cli();
-
-    public GameModel calc() {
-        ExpressionModel expression = prepareExpression();
-        String correctAnswer = calcResult(expression.getFirstOperand(), expression.getSecondOperand(),
-                expression.getOperation());
-        String answer = cli.handleGameInputAndReturnAnswer(expression.toString());
-
-        return new GameModel(expression.toString(), correctAnswer, answer);
+    public void calc(String gamerName) {
+        GameEngine gameEngine = new GameEngine();
+        String mainQuestion = "What is the result of the expression?";
+        Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
+        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
     }
 
     private String calcResult(int firstOperand, int secondOperand, String operation) {
@@ -53,5 +48,26 @@ public final class Calculator {
         operations.put(MULTIPLY_ID, "*");
 
         return operations.get(key);
+    }
+
+    private String getAnswer(ExpressionModel expression) {
+        return calcResult(expression.getFirstOperand(), expression.getSecondOperand(), expression.getOperation());
+    }
+
+    private Map<String, String> getQuestionsAndAnswers() {
+        Map<String, String> questionsAndAnswers = new HashMap<>();
+        ExpressionModel firstExpression = prepareExpression();
+        ExpressionModel secondExpression = prepareExpression();
+        ExpressionModel thirdExpression = prepareExpression();
+
+        String firstAnswer = getAnswer(firstExpression);
+        String secondAnswer = getAnswer(secondExpression);
+        String thirdAnswer =  getAnswer(thirdExpression);
+
+        questionsAndAnswers.put(firstExpression.toString(), firstAnswer);
+        questionsAndAnswers.put(secondExpression.toString(), secondAnswer);
+        questionsAndAnswers.put(thirdExpression.toString(), thirdAnswer);
+
+        return questionsAndAnswers;
     }
 }
