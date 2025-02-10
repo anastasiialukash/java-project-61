@@ -7,6 +7,7 @@ import java.util.Scanner;
 public final class GameEngine {
 
     private int gameRound = 0;
+    private static final int MAX_ROUNDS = 3;
 
     public void runGame(String mainGameQuestion, Map<String, String> gameQuestionsAndAnswers) {
         String gamerName = greet();
@@ -14,9 +15,8 @@ public final class GameEngine {
 
         int rightAnswerCount = 0;
 
-        int maxRightAnswers = 3;
         for (Map.Entry<String, String> entry : gameQuestionsAndAnswers.entrySet()) {
-            if (gameRound >= maxRightAnswers) {
+            if (gameRound >= MAX_ROUNDS) {
                 break;
             }
             String gamerAnswer = handleGameInputAndReturnAnswer(entry.getKey());
@@ -27,7 +27,7 @@ public final class GameEngine {
             }
         }
 
-        if (rightAnswerCount == maxRightAnswers) {
+        if (rightAnswerCount == MAX_ROUNDS) {
             System.out.println("Congratulations, " + gamerName + "!");
         }
 
@@ -55,7 +55,7 @@ public final class GameEngine {
         } else {
             System.out.printf("'%s' is the wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!\n",
                     gamerAnswer, correctAnswer, name);
-            gameRound = 3;
+            gameRound = MAX_ROUNDS;
             return false;
         }
     }
