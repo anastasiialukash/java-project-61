@@ -13,11 +13,11 @@ public final class Calculator {
     private static final int MINUS_ID = 2;
     private static final int MULTIPLY_ID = 3;
 
-    public void calc(String gamerName) {
+    public void calc() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "What is the result of the expression?";
         Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
-        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
+        gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
     private String calcResult(int firstOperand, int secondOperand, String operation) {

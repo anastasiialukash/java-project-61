@@ -9,11 +9,11 @@ import java.util.Map;
 public final class GCD {
     public GCD() { }
 
-    public void calculateGCD(String gamerName) {
+    public void calculateGCD() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "Find the greatest common divisor of given numbers.";
         Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
-        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
+        gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
     private int findGCD(int firstNumber, int secondNumber) {

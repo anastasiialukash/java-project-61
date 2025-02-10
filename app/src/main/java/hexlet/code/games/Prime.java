@@ -12,11 +12,11 @@ public final class Prime {
     private static final int FIRST_ODD_PRIME = 5;
     private static final int DIVISOR_STEP = 6;
 
-    public void isPrime(String gamerName) {
+    public void isPrime() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
         Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
-        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
+        gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
     public boolean isPrimeNumber(int number) {

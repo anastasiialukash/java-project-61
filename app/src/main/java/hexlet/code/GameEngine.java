@@ -8,7 +8,8 @@ public final class GameEngine {
 
     private int gameRound = 0;
 
-    public void runGame(String gamerName, String mainGameQuestion, Map<String, String> gameQuestionsAndAnswers) {
+    public void runGame(String mainGameQuestion, Map<String, String> gameQuestionsAndAnswers) {
+        String gamerName = greet();
         showGameIntro(mainGameQuestion);
 
         int rightAnswerCount = 0;
@@ -33,6 +34,15 @@ public final class GameEngine {
         gameRound = 0;
     }
 
+    public static String greet() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the Brain Games!");
+        System.out.print("May I have your name: ");
+        String name = scanner.next();
+        System.out.println("Hello, " + name + "!");
+
+        return name;
+    }
 
     private void showGameIntro(String gameIntro) {
         System.out.println(gameIntro);

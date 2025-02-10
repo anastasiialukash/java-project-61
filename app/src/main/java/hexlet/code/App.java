@@ -18,17 +18,7 @@ public class App {
 
     public static void main(String[] args) {
         String gameNumber = selectGame();
-        String gamerName = greet();
-        starGame(gameNumber, gamerName);
-    }
-
-    public static String greet() {
-        System.out.println("Welcome to the Brain Games!");
-        System.out.print("May I have your name: ");
-        String name = SCANNER.next();
-        System.out.println("Hello, " + name + "!");
-
-        return name;
+        starGame(gameNumber);
     }
 
     public static String selectGame() {
@@ -47,14 +37,14 @@ public class App {
         return game;
     }
 
-    public static void starGame(String gameNumber, String gamerName) {
+    public static void starGame(String gameNumber) {
         switch (gameNumber) {
             case "1" -> Cli.greet();
-            case "2" -> EVEN_GAME.isEven(gamerName);
-            case "3" -> CALCULATOR.calc(gamerName);
-            case "4" -> CALCULATOR_GCD.calculateGCD(gamerName);
-            case "5" -> PROGRESSION.getArithmeticProgression(gamerName);
-            case "6" -> PRIME.isPrime(gamerName);
+            case "2" -> EVEN_GAME.isEven();
+            case "3" -> CALCULATOR.calc();
+            case "4" -> CALCULATOR_GCD.calculateGCD();
+            case "5" -> PROGRESSION.getArithmeticProgression();
+            case "6" -> PRIME.isPrime();
             default -> exit();
         }
     }

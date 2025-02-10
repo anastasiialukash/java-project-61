@@ -11,11 +11,11 @@ public final class Progression {
     private static final int MAX_PROGRESSION_LENGTH = 11;
     private static final int MAX_NUMBER = 100;
 
-    public void getArithmeticProgression(String gamerName) {
+    public void getArithmeticProgression() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "What number is missing in the progression?";
         Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
-        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
+        gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
     private int[] getSequence(int progressionLength) {

@@ -9,11 +9,11 @@ import java.util.Map;
 
 public final class EvenGame {
 
-    public void isEven(String gamerName) {
+    public void isEven() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "Answer 'yes' if the number is even, otherwise answer 'no'.";
         Map<String, String> questionsAndAnswers = getQuestionsAndAnswers();
-        gameEngine.runGame(gamerName, mainQuestion, questionsAndAnswers);
+        gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
     public String isEvenNumber(int number) {
