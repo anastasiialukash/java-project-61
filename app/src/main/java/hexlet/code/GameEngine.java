@@ -10,7 +10,7 @@ public final class GameEngine {
     private static final int MAX_ROUNDS = 3;
 
     public void runGame(String mainGameQuestion, Map<String, String> gameQuestionsAndAnswers) {
-        String gamerName = greet();
+        String playerName = greet();
         showGameIntro(mainGameQuestion);
 
         int rightAnswerCount = 0;
@@ -20,7 +20,7 @@ public final class GameEngine {
                 break;
             }
             String gamerAnswer = handleGameInputAndReturnAnswer(entry.getKey());
-            boolean isValid = isValidResult(gamerAnswer, entry.getValue(), gamerName);
+            boolean isValid = isValidResult(gamerAnswer, entry.getValue(), playerName);
             gameRound += 1;
             if (isValid) {
                 rightAnswerCount += 1;
@@ -28,7 +28,7 @@ public final class GameEngine {
         }
 
         if (rightAnswerCount == MAX_ROUNDS) {
-            System.out.println("Congratulations, " + gamerName + "!");
+            System.out.println("Congratulations, " + playerName + "!");
         }
 
         gameRound = 0;
