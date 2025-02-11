@@ -9,8 +9,10 @@ import java.util.Map;
 
 public final class Prime {
     private static final int SMALL_PRIME_LIMIT = 3;
+    private static final int NUMBER_OF_QUESTIONS = 3;
     private static final int FIRST_ODD_PRIME = 5;
     private static final int DIVISOR_STEP = 6;
+    private static final int MAX_NUMBER = 100;
 
     public void isPrime() {
         GameEngine gameEngine = new GameEngine();
@@ -43,17 +45,11 @@ public final class Prime {
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        int firstNumber = GamesHelper.getRandomNumber();
-        int secondNumber = GamesHelper.getRandomNumber();
-        int thirdNumber = GamesHelper.getRandomNumber();
-
-        String firstAnswer = isPrimeNumber(firstNumber) ? "yes" : "no";
-        String secondAnswer = isPrimeNumber(secondNumber) ? "yes" : "no";
-        String thirdAnswer = isPrimeNumber(thirdNumber) ? "yes" : "no";
-
-        questionsAndAnswers.put(String.valueOf(firstNumber), firstAnswer);
-        questionsAndAnswers.put(String.valueOf(secondNumber), secondAnswer);
-        questionsAndAnswers.put(String.valueOf(thirdNumber), thirdAnswer);
+        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+            int question = GamesHelper.getRandomNumber(MAX_NUMBER);
+            String answer = isPrimeNumber(question) ? "yes" : "no";
+            questionsAndAnswers.put(String.valueOf(question), answer);
+        }
 
         return questionsAndAnswers;
     }

@@ -5,11 +5,10 @@ import java.util.Random;
 public final class GamesHelper {
 
     private static final Random RANDOM = new Random();
-    private static final int MAX_NUMBER = 100;
 
-    public static int getRandomNumber() {
+    public static int getRandomNumber(int maxNumber) {
         int low = 1;
-        return RANDOM.nextInt(MAX_NUMBER - low) + low;
+        return RANDOM.nextInt(maxNumber - low) + low;
     }
 
     public static int getRandomNumberWithinRange(int min, int max) {

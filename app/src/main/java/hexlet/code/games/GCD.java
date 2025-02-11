@@ -7,7 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class GCD {
-    public GCD() { }
+    private static final int MAX_NUMBER = 100;
+    private static final int NUMBER_OF_QUESTIONS = 3;
 
     public void calculateGCD() {
         GameEngine gameEngine = new GameEngine();
@@ -32,28 +33,19 @@ public final class GCD {
     }
 
     private int[] getNumbers() {
-        int firstNumber = GamesHelper.getRandomNumber();
-        int secondNumber = GamesHelper.getRandomNumber();
+        int firstNumber = GamesHelper.getRandomNumber(MAX_NUMBER);
+        int secondNumber = GamesHelper.getRandomNumber(MAX_NUMBER);
         return new int[] {firstNumber, secondNumber};
     }
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        int[] firstPair = getNumbers();
-        int[] secondPair = getNumbers();
-        int[] thirdPair = getNumbers();
-
-        String firstQuestion = firstPair[0] + " " + firstPair[1];
-        String secondQuestion = secondPair[0] + " " + secondPair[1];
-        String thirdQuestion = thirdPair[0] + " " + thirdPair[1];
-
-        int firstAnswer = findGCD(firstPair[0], firstPair[1]);
-        int secondAnswer = findGCD(secondPair[0], secondPair[1]);
-        int thirdAnswer = findGCD(thirdPair[0], thirdPair[1]);
-
-        questionsAndAnswers.put(firstQuestion, String.valueOf(firstAnswer));
-        questionsAndAnswers.put(secondQuestion, String.valueOf(secondAnswer));
-        questionsAndAnswers.put(thirdQuestion, String.valueOf(thirdAnswer));
+        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+            int[] pair = getNumbers();
+            String question = pair[0] + " " + pair[1];
+            String answer = String.valueOf(findGCD(pair[0], pair[1]));
+            questionsAndAnswers.put(question, answer);
+        }
 
         return questionsAndAnswers;
     }

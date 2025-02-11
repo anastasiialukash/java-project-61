@@ -3,28 +3,46 @@ package hexlet.code;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public final class GameEngine {
 
     private int gameRound = 0;
     private static final int MAX_ROUNDS = 3;
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public void runGame(String mainGameQuestion, Map<String, String> gameQuestionsAndAnswers) {
-        String playerName = greet();
-        showGameIntro(mainGameQuestion);
+        System.out.println("Welcome to the Brain Games!");
+        System.out.print("May I have your name: ");
+
+        String playerName = SCANNER.next();
+        System.out.println("Hello, " + playerName + "!");
+
+        System.out.println(mainGameQuestion);
 
         int rightAnswerCount = 0;
 
         for (Map.Entry<String, String> entry : gameQuestionsAndAnswers.entrySet()) {
+            String question = entry.getKey();
+            String correctAnswer = entry.getValue();
+
             if (gameRound >= MAX_ROUNDS) {
                 break;
             }
-            String gamerAnswer = handleGameInputAndReturnAnswer(entry.getKey());
-            boolean isValid = isValidResult(gamerAnswer, entry.getValue(), playerName);
-            gameRound += 1;
-            if (isValid) {
+
+            System.out.println("Question: " + question);
+            var answer = SCANNER.next();
+            System.out.println("Your answer: " + answer);
+
+            if (answer.equalsIgnoreCase(correctAnswer)) {
+                System.out.println("Correct!");
                 rightAnswerCount += 1;
+            } else {
+                System.out.printf("'%s' is the wrong answer ;(. "
+                                + "Correct answer was '%s'.\nLet's try again, %s!\n",
+                        answer, correctAnswer, playerName);
+                gameRound = MAX_ROUNDS;
             }
+
+            gameRound += 1;
         }
 
         if (rightAnswerCount == MAX_ROUNDS) {
@@ -32,40 +50,6 @@ public final class GameEngine {
         }
 
         gameRound = 0;
-    }
-
-    public static String greet() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Brain Games!");
-        System.out.print("May I have your name: ");
-        String name = scanner.next();
-        System.out.println("Hello, " + name + "!");
-
-        return name;
-    }
-
-    private void showGameIntro(String gameIntro) {
-        System.out.println(gameIntro);
-    }
-
-    private boolean isValidResult(String gamerAnswer, String correctAnswer, String name) {
-        if (gamerAnswer.equalsIgnoreCase(correctAnswer)) {
-            System.out.println("Correct!");
-            return true;
-        } else {
-            System.out.printf("'%s' is the wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!\n",
-                    gamerAnswer, correctAnswer, name);
-            gameRound = MAX_ROUNDS;
-            return false;
-        }
-    }
-
-    public static String handleGameInputAndReturnAnswer(String question) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Question: " + question);
-        var answer = scanner.next();
-        System.out.println("Your answer: " + answer);
-
-        return answer;
+        SCANNER.close();
     }
 }

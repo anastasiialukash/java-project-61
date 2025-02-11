@@ -9,6 +9,9 @@ import java.util.Map;
 
 public final class EvenGame {
 
+    private static final int MAX_NUMBER = 100;
+    private static final int NUMBER_OF_QUESTIONS = 3;
+
     public void isEven() {
         GameEngine gameEngine = new GameEngine();
         String mainQuestion = "Answer 'yes' if the number is even, otherwise answer 'no'.";
@@ -16,27 +19,17 @@ public final class EvenGame {
         gameEngine.runGame(mainQuestion, questionsAndAnswers);
     }
 
-    public String isEvenNumber(int number) {
-        if (number % 2 == 0) {
-            return "Yes";
-        } else {
-            return "No";
-        }
+    public boolean isEvenNumber(int number) {
+        return number % 2 == 0;
     }
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        int firstNumber = GamesHelper.getRandomNumber();
-        int secondNumber = GamesHelper.getRandomNumber();
-        int thirdNumber = GamesHelper.getRandomNumber();
-
-        String firstAnswer = isEvenNumber(firstNumber);
-        String secondAnswer = isEvenNumber(secondNumber);
-        String thirdAnswer = isEvenNumber(thirdNumber);
-
-        questionsAndAnswers.put(String.valueOf(firstNumber), firstAnswer);
-        questionsAndAnswers.put(String.valueOf(secondNumber), secondAnswer);
-        questionsAndAnswers.put(String.valueOf(thirdNumber), thirdAnswer);
+        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+            int question = GamesHelper.getRandomNumber(MAX_NUMBER);
+            String answer = isEvenNumber(question) ? "yes" : "no";
+            questionsAndAnswers.put(String.valueOf(question), answer);
+        }
 
         return questionsAndAnswers;
     }
