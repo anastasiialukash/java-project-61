@@ -6,10 +6,11 @@ import hexlet.code.GamesHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.GameEngine.MAX_ROUNDS;
+
 public final class Progression {
     private static final int MIN_PROGRESSION_LENGTH = 5;
     private static final int MAX_PROGRESSION_LENGTH = 11;
-    private static final int NUMBER_OF_QUESTIONS = 3;
     private static final int MAX_NUMBER = 100;
 
     public void getArithmeticProgression() {
@@ -42,7 +43,7 @@ public final class Progression {
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+        for (int i = 0; i < MAX_ROUNDS; i++) {
             String[] questionAndAnswer = getQuestionAndAnswer();
             questionsAndAnswers.put(questionAndAnswer[0], questionAndAnswer[1]);
         }

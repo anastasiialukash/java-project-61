@@ -6,8 +6,9 @@ import hexlet.code.GamesHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.GameEngine.MAX_ROUNDS;
+
 public final class Calculator {
-    private static final int NUMBER_OF_QUESTIONS = 3;
     private static final int MAX_NUMBER = 100;
 
     public void calc() {
@@ -22,7 +23,7 @@ public final class Calculator {
             case "-" -> String.valueOf(firstOperand - secondOperand);
             case "+" -> String.valueOf(firstOperand + secondOperand);
             case "*" -> String.valueOf(firstOperand * secondOperand);
-            default -> null;
+            default -> throw new RuntimeException("Unknown operation: " + operation);
         };
     }
 
@@ -41,10 +42,6 @@ public final class Calculator {
         return new String[]{firstOperand, secondOperand, operator};
     }
 
-    private String getQuestion(String[] question) {
-        return question[0] + " " + question[2] + " " + question[1];
-    }
-
     private String getAnswer(String[] question) {
         int firstOperand = Integer.parseInt(question[0]);
         int secondOperand = Integer.parseInt(question[1]);
@@ -53,9 +50,9 @@ public final class Calculator {
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+        for (int i = 0; i < MAX_ROUNDS; i++) {
             String[] expression = prepareExpression();
-            String question = getQuestion(expression);
+            String question = expression[0] + " " + expression[2] + " " + expression[1];
             String answer = getAnswer(expression);
             questionsAndAnswers.put(question, answer);
         }

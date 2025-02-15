@@ -6,10 +6,11 @@ import hexlet.code.GamesHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.GameEngine.MAX_ROUNDS;
+
 
 public final class Prime {
     private static final int SMALL_PRIME_LIMIT = 3;
-    private static final int NUMBER_OF_QUESTIONS = 3;
     private static final int FIRST_ODD_PRIME = 5;
     private static final int DIVISOR_STEP = 6;
     private static final int MAX_NUMBER = 100;
@@ -45,7 +46,7 @@ public final class Prime {
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+        for (int i = 0; i < MAX_ROUNDS; i++) {
             int question = GamesHelper.getRandomNumber(MAX_NUMBER);
             String answer = isPrimeNumber(question) ? "yes" : "no";
             questionsAndAnswers.put(String.valueOf(question), answer);

@@ -6,11 +6,12 @@ import hexlet.code.GamesHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.GameEngine.MAX_ROUNDS;
+
 
 public final class EvenGame {
 
     private static final int MAX_NUMBER = 100;
-    private static final int NUMBER_OF_QUESTIONS = 3;
 
     public void isEven() {
         GameEngine gameEngine = new GameEngine();
@@ -25,7 +26,7 @@ public final class EvenGame {
 
     private Map<String, String> getQuestionsAndAnswers() {
         Map<String, String> questionsAndAnswers = new HashMap<>();
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
+        for (int i = 0; i < MAX_ROUNDS; i++) {
             int question = GamesHelper.getRandomNumber(MAX_NUMBER);
             String answer = isEvenNumber(question) ? "yes" : "no";
             questionsAndAnswers.put(String.valueOf(question), answer);
